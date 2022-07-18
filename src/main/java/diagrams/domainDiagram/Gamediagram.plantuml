@@ -1,0 +1,34 @@
+@startuml
+'https://plantuml.com/state-diagram
+
+Class Game
+Class Player
+Class TTToe
+Class HangedMan
+Class PlayerCRUD
+Class Human
+Class IA
+Class StatisticsGames
+Class StatisticsPlayers
+Class Menu
+Class Util
+Class ListPlayers
+
+Game *-right- "10" ListPlayers
+Game *-down- Menu
+ListPlayers*--Player
+Menu *-down- HangedMan
+Menu *-left- TTToe
+Menu *-down- StatisticsPlayers
+Menu *-down- StatisticsGames
+Menu *-right- PlayerCRUD
+Menu ..>ListPlayers
+
+Player <|-down-"2" IA
+Player <|-down- "8" Human
+Player ..>PlayerCRUD
+Game .right.>Util
+StatisticsPlayers..>Player
+StatisticsGames..>Player
+PlayerCRUD..>ListPlayers
+@enduml

@@ -1,0 +1,53 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+package "HangedMan"{
+
+Class Turn{
++Player HumanPlayer
++Player IAPlayer
+-guessedWord: boolean
+-secretWord
+-tries
++CreateSecretWord()
++GuessSecretWord()
++nextPlayer()
+-isGameOver: boolean
++ShowStatistics()
++isHangedMan Boolean
++getWinner()
++getHyphenatedWord()
+}
+Class HangedMan{
++ play()
+}
+
+package "players"{
+abstract Class Player{
+-name
+-lastName
+-age
+-scoreWinner
+-scoreLoser
++playerTurn()
+
+}
+Class HumanPlayer
+Class IAPlayer
+}
+package "Utils"{
+Class Util{
++getRollDiceHigherNumber()
++getRandomNumber()
+
+}
+}
+}
+HangedMan*-down- Turn
+Player <|-down- HumanPlayer
+Player <|-down- IAPlayer
+Turn *-down- Player
+Player..> Util
+Turn..>Util
+
+@enduml

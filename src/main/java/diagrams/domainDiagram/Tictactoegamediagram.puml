@@ -1,0 +1,32 @@
+@startuml
+'https://plantuml.com/state-diagram
+TicTacToe *-down- Player
+TicTacToe *-down- gameBoard
+TicTacToe *-down- SelectPlayer
+SelectPlayer*-- "2" Player
+TicTacToe*--"2" Round
+Round*--Turn
+Turn -down-> "5" Player
+
+piece <|-down-> X
+piece <|-down-> O
+
+Goal <|-down->VerticalWinner
+Goal <|-down->DiagonalWinner
+Goal <|-down->HorizontalWinner
+Goal ..>gameBoard
+gameBoard*-down-> "3X3" square
+
+/'square o-down->"size" Row
+square o-down-> "size" Column'/
+square o-down-> "X,O"piece
+
+Player o-down-> Goal
+Player <|-down->Human
+Player <|-down->IA
+Player o-down->piece
+Player o-down-> gameBoard
+Goal..>Put
+Put..>gameBoard
+Put..>piece
+@enduml

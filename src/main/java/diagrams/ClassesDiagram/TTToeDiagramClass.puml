@@ -1,0 +1,77 @@
+@startuml
+'https://plantuml.com/class-diagram
+' -			private
+' #			protected
+' ~			package private
+' +         public
+package TTToe{
+
+class TTToe {
+'-Player humanPlayer;
+'-Player IAPlayer;
+'-GameBoard gameBoard;
+'+TTToe();
++play();
+}
+
+class GameBoard {
++square[][] squareGameBoard
+'+getPut(): Player
+-Piece iaPiece: Piece
+-Piece humanPiece: Piece
++drawGameBoard()
++isGameOver(): Boolean
+-verticalWinner()
+-horizontalWinner()
+-diagonalWinner()
+}
+
+package Players{
+Interface Player {
++PlayerTurn()
+'+put()
+}
+
+class HumanPlayer {
+
++getPlayerTurn(): Player
+-put
+}
+
+class IAPlayer {
++getPlayerTurn(): Player
+-put
+
+}
+}
+class Turn {
+-gameBoard gameBoard
++selectPlayer()
++startGame();
++playerTurn( char[][] gameBoard)
+isAValidMove(int move, char[][] gameBoard ): Boolean
++getNextPlayer()
++printEndGame()
++nextRound()
++reversePlayer()
++getWinner()
+}
+
+enum Piece {
+X
+O
+EMPTY
+}
+
+TTToe *-left- GameBoard
+TTToe *-- Player
+TTToe *-right- Turn
+Player <|-- IAPlayer
+Player <|-- HumanPlayer
+Player o-- GameBoard
+Player o-- Piece
+GameBoard *-- Piece
+Turn --> Player
+}
+
+@enduml

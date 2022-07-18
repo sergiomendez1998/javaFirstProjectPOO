@@ -1,0 +1,40 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+Class Turn
+Class Util
+Class Player
+Class HangedMan
+Class HumanPlayer
+Class IAPlayer
+Class PlayerGoal
+Class CreateSecretWord
+Class GuessSecretWord
+Class SecreteWord
+Class Dice
+Class SelectPlayer
+Class Hint
+Class Round
+Class WordHyphenated
+
+HangedMan *-down-"2"Round
+HangedMan *-down- Player
+Player o-down- PlayerGoal
+Round*-down- Turn
+Turn-->Player
+HangedMan*--SelectPlayer
+SelectPlayer-->"2"Player
+PlayerGoal<|-down-CreateSecretWord
+PlayerGoal<|-down-GuessSecretWord
+
+Player <|-down- HumanPlayer
+Player <|-down- IAPlayer
+GuessSecretWord *-down-SecreteWord
+Util*-down-Dice
+Player..>Util
+SelectPlayer..>Util
+Turn*-right-"1"Hint
+
+SecreteWord *-down WordHyphenated
+
+@enduml

@@ -1,0 +1,91 @@
+@startuml
+'https://plantuml.com/state-diagram
+package "Games" {
+
+Class Game{
++initGame()
+}
+package "TicTacToe" {
+Class PlayTTToe {
+}
+}
+package "HangedMan" {
+Class PlayHangedMan{
+
+}
+
+}
+package "Menu" {
+Class Menu{
++AdministratePlayers()
++printStatisticsPlayers()
++printStatisticsGames()
++PlayTTToe()
++PlayHangedMan()
+}
+package "CRUDplayers"{
+Class CRUDplayer{
+-Player[] humanPlayers: Player
+-Player[] IAPlayers: Player
++getCreatePlayers
++printListPlayers
++getDeletePlayers
++getUpdatePlayers
+}
+}
+
+package "Statistics"{
+Class StatisticsPlayers{
+-Player[] humanPlayers: Player
+-Player[] IAPlayers: Player
++printStatisticsPlayerByName()
+}
+Class StatisticsGames{
+-Player[] listOfPlayers: Player
++printStatisticsTToeGame()
++printStatisticsHangedGame()
+}
+}
+
+
+package "Players" {
+Abstract class Player{
+-name
+-nickname
+-scoreLoser
+-scoreWinner
++deletePlayers()
++updatePlayers()
++createPlayers()
++getDiceTimes()
+}
+Class HumanPlayer{}
+Class IAPlayer{}
+}
+}
+package "Utils" {
+Class Util{
++getRollDiceHigherNumber()
++generateRandomNumber()
+}
+}
+
+Player<|--IAPlayer
+Player<|--HumanPlayer
+Menu*-down-CRUDplayer
+Menu*--down-StatisticsPlayers
+Menu*--down-StatisticsGames
+Menu*--down-PlayHangedMan
+Menu*--down-PlayTTToe
+CRUDplayer .down.>Player
+StatisticsPlayers .down.>Player
+StatisticsGames .down.>Player
+Game*--Menu
+Game..>Util
+Game*--Player
+CRUDplayer .up.>Game
+
+}
+
+
+@enduml
